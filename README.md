@@ -13,6 +13,7 @@ This role has been tested with Kibana v4.4 only
 
   vars:
     kibana_version: 4.4
+	kibana_elasticsearch_url: "http://elasticsearch_host:9200"
 
   roles:
     - wunzeco.kibana
