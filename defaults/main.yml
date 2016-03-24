@@ -1,0 +1,50 @@
+---
+kibana_user:  kibana
+kibana_group: root
+
+kibana_log_dir:     /var/log/kibana
+kibana_install_dir: /opt/kibana
+kibana_conf_dir:    "{{ kibana_install_dir }}/config"
+kibana_pid_dir:     /var/run
+kibana_pid_file: "{{ kibana_pid_dir }}/kibana.pid"
+
+############
+##  Package
+kibana_version: 4.4
+kibana_signing_key_url: "https://packages.elastic.co/GPG-KEY-elasticsearch"
+kibana_apt_repo: "deb http://packages.elastic.co/kibana/{{ kibana_version }}/debian stable main"
+
+###########################
+##  Default settings config
+kibana_chroot_path: "/"
+kibana_chdir:  "/"
+kibana_nice:   ""
+
+###########
+##  Config
+kibana_index: ".kibana"
+kibana_defaultAppId: "discover"
+kibana_server_port: 5601
+kibana_server_host: "0.0.0.0"
+kibana_server_basePath: "" 
+kibana_server_maxPayloadBytes: 1048576 
+kibana_server_ssl_cert:                         # When required to enable SSL. /path/to/your/server.crt
+kibana_server_ssl_key:                          # When required to enable SSL. /path/to/your/server.key
+
+kibana_elasticsearch_url: "http://localhost:9200"
+kibana_elasticsearch_preserveHost: true
+kibana_elasticsearch_username:                  # Required if ES is protected with basic auth
+kibana_elasticsearch_password:                  # Required if ES is protected with basic auth
+kibana_elasticsearch_ssl_cert:                  # Optional. /path/to/your/client.crt
+kibana_elasticsearch_ssl_key:                   # Optional. /path/to/your/client.key
+kibana_elasticsearch_ssl_ca:                    # Optional. /path/to/your/CA.pem
+kibana_elasticsearch_ssl_verify: true
+kibana_elasticsearch_pingTimeout:               # Defaults to requestTimeout.
+kibana_elasticsearch_requestTimeout: 300000
+kibana_elasticsearch_shardTimeout: 0
+kibana_elasticsearch_startupTimeout: 5000
+
+kibana_logging_dest: stdout
+kibana_logging_silent: false
+kibana_logging_quiet: false
+kibana_logging_verbose: false

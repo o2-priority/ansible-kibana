@@ -1,0 +1,34 @@
+---
+
+- name: Download and install kibana apt public signing key
+  apt_key: url="{{ kibana_signing_key_url }}" state=present
+
+
+- name: Add kibana apt repository definition to apt sources list
+  apt_repository: repo="{{ kibana_apt_repo }}" update_cache=yes state=present
+
+- name: Install kibana
+  apt: name=kibana state=present
+
+- name: Create kibana config file
+  template: 
+    src:   kibana.yml.j2
+    dest:  "{{ kibana_conf_dir }}/kibana.yml"
+    owner: "root"
+    group: "root"
+    mode:  0644
+  notify: 
+    - Restart kibana
+
+- name: Create kibana default settings file
+  template: 
+    src:   etc.default.kibana.j2
+    dest:  "/etc/default/kibana"
+    owner: root
+    group: root
+    mode:  0644
+  notify: 
+    - Restart kibana
+  
+- name: Start kibana
+  service: name=kibana enabled=yes state=started

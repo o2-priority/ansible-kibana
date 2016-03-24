@@ -1,0 +1,12 @@
+---
+- hosts: test-kitchen
+
+  vars:
+    java_package: oracle-java8-installer
+    elasticsearch_cluster_name: kitchenCluster
+    kibana_elasticsearch_url: "http://{{ ansible_default_ipv4.address }}:9200"
+
+  roles:
+    - wunzeco.java
+    - wunzeco.elasticsearch
+    - ansible-kibana
