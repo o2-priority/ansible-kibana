@@ -49,5 +49,5 @@ describe service('kibana') do
 end
 
 describe file("#{kibana_log_dir}/kibana.stdout") do
-    its(:content) { should match %r(Status changed from yellow to green - Kibana index ready) }
+  its(:content) { should match %r(Status changed from .+ to green - Ready) }
 end
