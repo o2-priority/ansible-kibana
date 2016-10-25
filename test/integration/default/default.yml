@@ -10,3 +10,7 @@
     - wunzeco.java
     - wunzeco.elasticsearch
     - ansible-kibana
+
+  post_tasks:
+    - name: Wait for elasticsearch to start
+      wait_for: host="{{ ansible_default_ipv4.address }}" port=9200
