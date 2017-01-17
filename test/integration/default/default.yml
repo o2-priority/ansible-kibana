@@ -6,11 +6,48 @@
     elasticsearch_cluster_name: kitchenCluster
     kibana_elasticsearch_url: "http://{{ ansible_default_ipv4.address }}:9200"
 
+    ### NGINX ###
+    nginx_confd_purge:       true
+    nginx_vhost_purge:       true
+    nginx_configtest_enable: true
+    nginx_vhost:
+      - vhost:                kibana.tools.example.co.uk
+        use_default_location: false
+        listen_port:          80
+        listen_options:       default_server
+        index_files:          []
+        access_log:           'off'
+        format_log:           ''
+    config_nginx_location: true
+    nginx_location:
+      - location:             '/'
+        auth_basic:           'Restricted'
+        auth_basic_user_file: '/etc/nginx/conf.d/kibana.htpasswd'
+        vhost:                'kibana.tools.example.co.uk'
+        proxy_pass:           'http://127.0.0.1:5601'
+    ### NGINX ###
+
   roles:
     - wunzeco.java
     - wunzeco.elasticsearch
+    - wunzeco.nginx
     - ansible-kibana
 
   post_tasks:
+    - name: Install python-pip
+      apt: name=python-pip state=present
+
+    - name: Install passlib python package
+      pip: name=passlib state=present
+
+    - name: Create login for access to Kibana UI
+      htpasswd:
+        path: /etc/nginx/conf.d/kibana.htpasswd
+        name: ogonna
+        password: 'MyNginxPass'
+        owner: root
+        group: www-data
+        mode: 0640
+
     - name: Wait for elasticsearch to start
       wait_for: host="{{ ansible_default_ipv4.address }}" port=9200

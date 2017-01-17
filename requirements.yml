@@ -1,2 +1,3 @@
 - src: wunzeco.java
 - src: wunzeco.elasticsearch
+- src: wunzeco.nginx
