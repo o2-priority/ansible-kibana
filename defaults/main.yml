@@ -10,7 +10,7 @@ kibana_pid_file: "{{ kibana_pid_dir }}/kibana.pid"
 
 ############
 ##  Package
-kibana_version: 4.4.2
+kibana_version: 4.5.4
 kibana_major_version:     "{{ kibana_version.split('.')|first }}"
 kibana_minor_version:     "{{ kibana_version.split('.')[1] }}"
 kibana_repo_version:      "{{ kibana_major_version }}.{{ kibana_minor_version }}"
