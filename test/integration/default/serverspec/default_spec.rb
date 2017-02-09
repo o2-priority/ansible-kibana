@@ -1,8 +1,9 @@
 require 'spec_helper'
 
-kibana_log_dir = '/var/log/kibana'
-kibana_install_dir = '/opt/kibana'
-kibana_conf_dir = "#{kibana_install_dir}/config"
+kibana_log_dir  = '/var/log/kibana'
+kibana_pid_dir  = '/var/run/kibana'
+kibana_home_dir = '/usr/share/kibana'
+kibana_conf_dir = '/etc/kibana'
 
 describe user('kibana') do
   it { should exist }
@@ -14,7 +15,7 @@ end
 
 %W(
   #{kibana_conf_dir}
-  #{kibana_install_dir}/bin
+  #{kibana_home_dir}/bin
 ).each do |d|
   describe file(d) do
     it { should be_directory }
@@ -22,9 +23,14 @@ end
   end
 end
 
-describe file(kibana_log_dir) do
-  it { should be_directory }
-  it { should be_owned_by 'kibana' }
+%W(
+  #{kibana_log_dir}
+  #{kibana_pid_dir}
+).each do |d|
+  describe file(d) do
+    it { should be_directory }
+    it { should be_owned_by 'kibana' }
+  end
 end
 
 %W(
