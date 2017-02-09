@@ -1,6 +1,16 @@
-[kibana-{{ kibana_repo_version }}]
-name=Kibana repository for {{ kibana_repo_version }}.x packages
-baseurl={{ kibana_yum_repo_baseurl }}
+{% if kibana_major_version|int >= 5 %} 
+[kibana-{{ kibana_major_version }}.x]
+name=Kibana repository for {{ kibana_major_version }}.x packages
 gpgcheck=1
 gpgkey={{ kibana_signing_key_url }}
 enabled=1
+autorefresh=1
+type=rpm-md
+{% else %} 
+[kibana-{{ kibana_repo_version }}]
+name=Kibana repository for {{ kibana_repo_version }}.x packages
+baseurl={{ kibana_4_yum_repo_baseurl }}
+gpgcheck=1
+gpgkey={{ kibana_signing_key_url }}
+enabled=1
+{% endif %} 

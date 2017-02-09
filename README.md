@@ -10,7 +10,7 @@ Ansible role to install and configure Kibana 4.
 - hosts: loghost
 
   vars:
-    kibana_version: 4.4.2
+    kibana_version: 5.2.0
 	kibana_elasticsearch_url: "http://elasticsearch_host:9200"
 
   roles:

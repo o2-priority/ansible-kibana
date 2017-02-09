@@ -5,11 +5,19 @@
     url:   "{{ kibana_signing_key_url }}"
     state: present
 
-- name: Add kibana apt repository definition to apt sources list
+- name: Add kibana apt repository definition to apt sources list | v4.x or earlier
+  apt_repository:
+    repo:         "{{ kibana_4_apt_repo }}"
+    update_cache: yes
+    state:        present
+  when: kibana_major_version|int < 5
+
+- name: Add kibana apt repository definition to apt sources list | v5.x or later
   apt_repository:
     repo:         "{{ kibana_apt_repo }}"
     update_cache: yes
     state:        present
+  when: kibana_major_version|int >= 5
 
 - name: Install kibana
   apt: 

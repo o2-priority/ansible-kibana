@@ -1,22 +1,31 @@
 ---
 kibana_user:  kibana
-kibana_group: root
+kibana_group: kibana
 
+
+kibana_home_dir:    /usr/share/kibana
+kibana_bin_dir:     "{{ kibana_home_dir }}/bin"
+kibana_conf_dir:    "/etc/kibana"
+kibana_data_dir:    "/var/lib/kibana"
+kibana_plugins_dir: "{{ kibana_home_dir }}/plugins"
 kibana_log_dir:     /var/log/kibana
-kibana_install_dir: /opt/kibana
-kibana_conf_dir:    "{{ kibana_install_dir }}/config"
-kibana_pid_dir:     /var/run
+kibana_install_dir: /opt/kibana         # v4.x and earlier only
+kibana_pid_dir:     /var/run/kibana
 kibana_pid_file: "{{ kibana_pid_dir }}/kibana.pid"
+
 
 ############
 ##  Package
-kibana_version: 4.5.4
+kibana_version: 5.2.0
 kibana_major_version:     "{{ kibana_version.split('.')|first }}"
 kibana_minor_version:     "{{ kibana_version.split('.')[1] }}"
 kibana_repo_version:      "{{ kibana_major_version }}.{{ kibana_minor_version }}"
-kibana_signing_key_url:   "https://packages.elastic.co/GPG-KEY-elasticsearch"
-kibana_apt_repo:          "deb https://packages.elastic.co/kibana/{{ kibana_repo_version }}/debian stable main"
-kibana_yum_repo_baseurl:  "https://packages.elastic.co/kibana/{{ kibana_repo_version }}/centos"
+kibana_signing_key_url:   "https://artifacts.elastic.co/GPG-KEY-elasticsearch"
+kibana_apt_repo:          "deb https://artifacts.elastic.co/packages/{{ kibana_major_version }}.x/apt stable main"
+kibana_yum_repo_baseurl:  "https://artifacts.elastic.co/packages/{{ kibana_major_version }}.x/yum"
+
+kibana_4_apt_repo:        "deb https://packages.elastic.co/kibana/{{ kibana_repo_version }}/debian stable main"
+kibana_4_yum_repo_baseurl:  "https://packages.elastic.co/kibana/{{ kibana_repo_version }}/centos"
 
 ###########################
 ##  Default settings config
@@ -44,7 +53,7 @@ kibana_elasticsearch_ssl_key:                   # Optional. /path/to/your/client
 kibana_elasticsearch_ssl_ca:                    # Optional. /path/to/your/CA.pem
 kibana_elasticsearch_ssl_verify: true
 kibana_elasticsearch_pingTimeout:               # Defaults to requestTimeout.
-kibana_elasticsearch_requestTimeout: 300000
+kibana_elasticsearch_requestTimeout: 30000
 kibana_elasticsearch_shardTimeout: 0
 kibana_elasticsearch_startupTimeout: 5000
 
@@ -52,3 +61,11 @@ kibana_logging_dest: stdout
 kibana_logging_silent: false
 kibana_logging_quiet: false
 kibana_logging_verbose: false
+
+# Kibana v5.x
+#kibana_server_host: "{{ ansible_default_ipv4.address something Try out with 0.0.0.0 though }}"
+kibana_server_name: 'My-Kibana'
+kibana_ops_interval: 5000
+kibana_elasticsearch_requestHeadersWhitelist: [ authorization ]
+kibana_elasticsearch_customHeaders: {}
+kibana_kill_on_stop_timeout: 0
