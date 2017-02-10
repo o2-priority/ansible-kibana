@@ -69,3 +69,6 @@ kibana_ops_interval: 5000
 kibana_elasticsearch_requestHeadersWhitelist: [ authorization ]
 kibana_elasticsearch_customHeaders: {}
 kibana_kill_on_stop_timeout: 0
+
+kibana_plugins_install: []
+kibana_plugins_remove:  []

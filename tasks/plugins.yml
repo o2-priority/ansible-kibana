@@ -1,0 +1,20 @@
+---
+
+- name: Get list of installed kibana plugins
+  shell: >
+      {{ kibana_bin_dir }}/kibana-plugin list
+  register: plugins
+  
+#- debug: var=plugins
+
+- name: Install kibana plugins
+  shell: >
+      {{ kibana_bin_dir }}/kibana-plugin install {{ item }}
+  with_items: "{{ kibana_plugins_install }}"
+  when: item not in plugins.stdout_lines and item not in kibana_plugins_remove
+
+- name: Remove kibana plugins
+  shell: >
+      {{ kibana_bin_dir }}/kibana-plugin remove {{ item }}
+  with_items: "{{ kibana_plugins_remove }}"
+  when: item in plugins.stdout_lines
