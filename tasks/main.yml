@@ -5,31 +5,26 @@
 
 #- pause: minutes=10
 
-- name: Set kibana config dir for v4.x and earlier
-  set_fact: 
-    kibana_conf_dir: "{{ kibana_install_dir }}/config"
-  when: kibana_major_version|int < 5
-  
-- name: Create kibana config file | v4.x or earlier
-  template: 
-    src:   kibana-v4.x.yml.j2
-    dest:  "{{ kibana_conf_dir }}/kibana.yml"
-    owner: "root"
-    group: "root"
-    mode:  0644
-  when: kibana_major_version|int < 5
-  notify: 
-    - Restart kibana
-
-- name: Create kibana config file | v5.x or later
+- name: Create kibana config file | v5.x
   template: 
     src:   kibana-v5.x.yml.j2
     dest:  "{{ kibana_conf_dir }}/kibana.yml"
     owner: "root"
     group: "root"
     mode:  0644
-  when: kibana_major_version|int >= 5
+  when: kibana_major_version|int == 5
   notify: 
+    - Restart kibana
+
+- name: Create kibana config file | v6.x
+  template:
+    src:   kibana-v6.x.yml.j2
+    dest:  "{{ kibana_conf_dir }}/kibana.yml"
+    owner: "root"
+    group: "root"
+    mode:  0644
+  when: kibana_major_version|int == 6
+  notify:
     - Restart kibana
 
 - name: Create kibana default settings file

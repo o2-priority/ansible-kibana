@@ -24,9 +24,6 @@ kibana_signing_key_url:   "https://artifacts.elastic.co/GPG-KEY-elasticsearch"
 kibana_apt_repo:          "deb https://artifacts.elastic.co/packages/{{ kibana_major_version }}.x/apt stable main"
 kibana_yum_repo_baseurl:  "https://artifacts.elastic.co/packages/{{ kibana_major_version }}.x/yum"
 
-kibana_4_apt_repo:        "deb https://packages.elastic.co/kibana/{{ kibana_repo_version }}/debian stable main"
-kibana_4_yum_repo_baseurl:  "https://packages.elastic.co/kibana/{{ kibana_repo_version }}/centos"
-
 ###########################
 ##  Default settings config
 kibana_chroot_path: "/"
@@ -72,3 +69,6 @@ kibana_kill_on_stop_timeout: 0
 
 kibana_plugins_install: []
 kibana_plugins_remove:  []
+
+# Kibana v6.x only
+kibana_elasticsearch_ssl_verificationMode: certificate

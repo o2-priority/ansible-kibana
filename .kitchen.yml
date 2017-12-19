@@ -8,6 +8,8 @@ provisioner:
   requirements_path: requirements.yml
   ansible_verbose: false
   ansible_verbosity: 2
+  ignore_paths_from_root:
+    - .kitchen
 
 platforms:
   - name: ubuntu-14.04
@@ -22,3 +24,6 @@ suites:
     driver:
       network:
         - ["private_network", { ip: "172.29.129.35" }]
+
+transport:
+  max_ssh_sessions: 4
