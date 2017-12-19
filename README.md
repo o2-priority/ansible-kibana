@@ -1,7 +1,7 @@
 Kibana
 ========
 
-Ansible role to install and configure Kibana 4.
+Ansible role to install and configure Kibana 5 or 6.
 
 
 ## Examples
