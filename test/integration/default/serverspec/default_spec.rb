@@ -23,14 +23,9 @@ end
   end
 end
 
-%W(
-  #{kibana_log_dir}
-  #{kibana_pid_dir}
-).each do |d|
-  describe file(d) do
-    it { should be_directory }
-    it { should be_owned_by 'kibana' }
-  end
+describe file(kibana_pid_dir) do
+  it { should be_directory }
+  it { should be_owned_by 'kibana' }
 end
 
 %W(
@@ -54,6 +49,16 @@ describe service('kibana') do
   it { should be_running }
 end
 
-describe file("#{kibana_log_dir}/kibana.stdout") do
-  its(:content) { should match %r(Status changed from .+ to green - Ready) }
+if os[:family] == 'ubuntu' and os[:platform] == '14.04'
+  describe file(kibana_log_dir) do
+    it { should be_directory }
+    it { should be_owned_by 'kibana' }
+  end
+  describe file("#{kibana_log_dir}/kibana.stdout") do
+    its(:content) { should match %r(Status changed from .+ to green - Ready) }
+  end
+else
+  describe command("journalctl -u kibana.service") do
+    its(:stdout) { should match %r(Status changed from .+ to green - Ready) }
+  end
 end

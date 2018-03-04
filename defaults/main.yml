@@ -16,7 +16,7 @@ kibana_pid_file: "{{ kibana_pid_dir }}/kibana.pid"
 
 ############
 ##  Package
-kibana_version: 5.2.0
+kibana_version: 6.2.2
 kibana_major_version:     "{{ kibana_version.split('.')|first }}"
 kibana_minor_version:     "{{ kibana_version.split('.')[1] }}"
 kibana_repo_version:      "{{ kibana_major_version }}.{{ kibana_minor_version }}"
@@ -36,8 +36,8 @@ kibana_index: ".kibana"
 kibana_defaultAppId: "discover"
 kibana_server_port: 5601
 kibana_server_host: "0.0.0.0"
-kibana_server_basePath: "" 
-kibana_server_maxPayloadBytes: 1048576 
+kibana_server_basePath: ""
+kibana_server_maxPayloadBytes: 1048576
 kibana_server_ssl_cert:                         # When required to enable SSL. /path/to/your/server.crt
 kibana_server_ssl_key:                          # When required to enable SSL. /path/to/your/server.key
 
