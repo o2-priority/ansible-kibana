@@ -36,9 +36,13 @@
   post_tasks:
     - name: Install python-pip
       apt: name=python-pip state=present
+      when: ansible_os_family|lower == 'debian'
 
     - name: Install passlib python package
       pip: name=passlib state=present
+
+    - set_fact: _nginx_group='nginx'
+      when: ansible_os_family|lower == 'redhat'
 
     - name: Create login for access to Kibana UI
       htpasswd:
@@ -46,7 +50,7 @@
         name: ogonna
         password: 'MyNginxPass'
         owner: root
-        group: www-data
+        group: "{{ _nginx_group|default('www-data') }}"
         mode: 0640
 
     - name: Wait for elasticsearch to start
