@@ -49,7 +49,7 @@ describe service('kibana') do
   it { should be_running }
 end
 
-if os[:family] == 'ubuntu' and os[:platform] == '14.04'
+if os[:family] == 'ubuntu' and os[:release] == '14.04'
   describe file(kibana_log_dir) do
     it { should be_directory }
     it { should be_owned_by 'kibana' }
