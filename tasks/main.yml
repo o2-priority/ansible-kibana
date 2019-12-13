@@ -45,9 +45,9 @@
     mode:  0755
     state: directory
   
-#- name: Kibana Plugins
-#  include: plugins.yml
-#  when: kibana_major_version|int >= 5
+- name: Kibana Plugins
+  include: plugins.yml
+  when: kibana_major_version|int >= 5
 
 - name: Start kibana
   service: name=kibana enabled=yes state=started
