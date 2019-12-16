@@ -69,6 +69,7 @@ kibana_kill_on_stop_timeout: 0
 
 kibana_plugins_install: [x-pack]
 kibana_plugins_remove:  []
+kibana_update_plugins:  false
 
 # Kibana v6.x only
 kibana_elasticsearch_ssl_verificationMode: certificate
