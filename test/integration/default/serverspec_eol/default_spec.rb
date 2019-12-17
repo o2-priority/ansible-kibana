@@ -1,4 +1,4 @@
-require 'spec_helper'
+require '/tmp/kitchen/spec/spec_helper.rb'
 
 kibana_log_dir  = '/var/log/kibana'
 kibana_pid_dir  = '/var/run/kibana'

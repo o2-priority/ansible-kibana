@@ -1,3 +1,14 @@
-- src: wunzeco.java
-- src: wunzeco.elasticsearch
-- src: wunzeco.nginx
+- src: git@github.com:o2-priority/ansible-java.git
+  version: master
+  scm: git
+  name: o2-priority.java
+
+- src: git@github.com:o2-priority/ansible-elasticsearch.git
+  version: master
+  scm: git
+  name: o2-priority.elasticsearch
+
+- src: git@github.com:o2-priority/ansible-nginx.git
+  version: master
+  scm: git
+  name: o2-priority.nginx

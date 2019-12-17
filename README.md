@@ -14,7 +14,7 @@ Ansible role to install and configure Kibana 5 or 6.
 	kibana_elasticsearch_url: "http://elasticsearch_host:9200"
 
   roles:
-    - wunzeco.kibana
+    - o2-priority.kibana
 ```
 
 ## Testing

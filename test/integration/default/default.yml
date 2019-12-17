@@ -2,11 +2,10 @@
 - hosts: test-kitchen
 
   vars:
-    java_package: oracle-java8-installer
+    java_package: openjdk-8-jdk
     elasticsearch_cluster_name: kitchenCluster
     kibana_elasticsearch_url: "http://{{ ansible_default_ipv4.address }}:9200"
 
-    ### NGINX ###
     nginx_confd_purge:       true
     nginx_vhost_purge:       true
     nginx_configtest_enable: true
@@ -25,22 +24,19 @@
         auth_basic_user_file: '/etc/nginx/conf.d/kibana.htpasswd'
         vhost:                'kibana.tools.example.co.uk'
         proxy_pass:           'http://127.0.0.1:5601'
-    ### NGINX ###
+
+    elasticsearch_discovery:
+        "type": "single-node"
+    elasticsearch_version: 6.2.2
+    elasticsearch_curator_version: 5.6.0
 
   roles:
-    - wunzeco.java
-    - wunzeco.elasticsearch
-    - wunzeco.nginx
+    - o2-priority.java
+    - o2-priority.elasticsearch
+    - o2-priority.nginx
     - ansible-kibana
 
   post_tasks:
-    - name: Install python-pip
-      apt: name=python-pip state=present
-      when: ansible_os_family|lower == 'debian'
-
-    - name: Install passlib python package
-      pip: name=passlib state=present
-
     - set_fact: _nginx_group='nginx'
       when: ansible_os_family|lower == 'redhat'
 
