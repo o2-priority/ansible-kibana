@@ -68,7 +68,7 @@ kibana_elasticsearch_customHeaders: {}
 kibana_kill_on_stop_timeout: 0
 
 kibana_plugins_install: [x-pack]
-kibana_plugins_remove:  []
+kibana_plugins_remove:  [x-pack]
 kibana_update_plugins:  false
 
 # Kibana v6.x only
