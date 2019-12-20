@@ -4,7 +4,7 @@
   name: o2-priority.java
 
 - src: git@github.com:o2-priority/ansible-elasticsearch.git
-  version: master
+  version: reporting
   scm: git
   name: o2-priority.elasticsearch
 

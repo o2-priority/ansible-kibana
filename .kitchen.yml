@@ -6,7 +6,7 @@ provisioner:
   name: ansible_playbook
   hosts: test-kitchen
   requirements_path: requirements.yml
-  require_chef_for_busser: false
+  # require_chef_for_busser: false
   require_ansible_omnibus: false
   ansible_version: 2.7.15-1ppa~trusty
   ansible_verbose: false
@@ -23,6 +23,8 @@ platforms:
       image: ubuntu:14.04
       platform: ubuntu
       privileged: true
+      forward:
+       - 9000:5601
       provision_command:
         - apt-get update
         - apt-get install -y software-properties-common apt-transport-https
