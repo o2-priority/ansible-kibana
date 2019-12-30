@@ -54,6 +54,10 @@ kibana_elasticsearch_requestTimeout: 30000
 kibana_elasticsearch_shardTimeout: 0
 kibana_elasticsearch_startupTimeout: 5000
 Kibana_elasticsearch_xpack_security: false
+Kibana_elasticsearch_xpack_reporting: true
+Kibana_elasticsearch_xpack_graph: false
+Kibana_elasticsearch_xpack_ml: false
+Kibana_elasticsearch_xpack_monitoring: false
 
 kibana_logging_dest: stdout
 kibana_logging_silent: false
