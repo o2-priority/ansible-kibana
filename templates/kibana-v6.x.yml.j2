@@ -123,8 +123,8 @@ logging.verbose: {{ kibana_logging_verbose|bool|lower }}
 ops.interval: {{ kibana_ops_interval }}
 
 # To disable elastic search security features. Change it to true to enable.
-xpack.security.enabled: {{ Kibana_elasticsearch_xpack_security|bool|lower }}
-xpack.graph.enabled:  {{ Kibana_elasticsearch_xpack_graph|bool|lower }}
-xpack.ml.enabled:  {{ Kibana_elasticsearch_xpack_ml|bool|lower }}
-xpack.monitoring.enabled:  {{ Kibana_elasticsearch_xpack_monitoring|bool|lower }}
-xpack.reporting.enabled:  {{ Kibana_elasticsearch_xpack_reporting|bool|lower }}
+xpack.security.enabled: {{ kibana_elasticsearch_xpack_security|bool|lower }}
+xpack.graph.enabled:  {{ kibana_elasticsearch_xpack_graph|bool|lower }}
+xpack.ml.enabled:  {{ kibana_elasticsearch_xpack_ml|bool|lower }}
+xpack.monitoring.enabled:  {{ kibana_elasticsearch_xpack_monitoring|bool|lower }}
+xpack.reporting.enabled:  {{ kibana_elasticsearch_xpack_reporting|bool|lower }}
