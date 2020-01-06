@@ -2,7 +2,7 @@
 
 - name: Get list of installed kibana plugins
   shell: >
-      {{ kibana_bin_dir }}/kibana-plugin list {{ _list_plugins_cmd_filter|default('') }}
+      {{ kibana_bin_dir }}/kibana-plugin list 
   register: plugins
 
 - debug: msg="Installed plugins - {{ plugins.stdout_lines|join(', ') }}"
