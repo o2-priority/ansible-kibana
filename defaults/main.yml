@@ -53,6 +53,11 @@ kibana_elasticsearch_pingTimeout:               # Defaults to requestTimeout.
 kibana_elasticsearch_requestTimeout: 30000
 kibana_elasticsearch_shardTimeout: 0
 kibana_elasticsearch_startupTimeout: 5000
+kibana_elasticsearch_xpack_security: false
+kibana_elasticsearch_xpack_reporting: true
+kibana_elasticsearch_xpack_graph: false
+kibana_elasticsearch_xpack_ml: false
+kibana_elasticsearch_xpack_monitoring: false
 
 kibana_logging_dest: stdout
 kibana_logging_silent: false
@@ -69,6 +74,8 @@ kibana_kill_on_stop_timeout: 0
 
 kibana_plugins_install: []
 kibana_plugins_remove:  []
+kibana_update_plugins:  false
+
 
 # Kibana v6.x only
 kibana_elasticsearch_ssl_verificationMode: certificate

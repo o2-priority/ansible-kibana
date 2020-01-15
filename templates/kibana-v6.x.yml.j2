@@ -121,3 +121,10 @@ logging.verbose: {{ kibana_logging_verbose|bool|lower }}
 # Set the interval in milliseconds to sample system and process performance
 # metrics. Minimum is 100ms. Defaults to 5000.
 ops.interval: {{ kibana_ops_interval }}
+
+# To disable elastic search security features. Change it to true to enable.
+xpack.security.enabled: {{ kibana_elasticsearch_xpack_security|bool|lower }}
+xpack.graph.enabled:  {{ kibana_elasticsearch_xpack_graph|bool|lower }}
+xpack.ml.enabled:  {{ kibana_elasticsearch_xpack_ml|bool|lower }}
+xpack.monitoring.enabled:  {{ kibana_elasticsearch_xpack_monitoring|bool|lower }}
+xpack.reporting.enabled:  {{ kibana_elasticsearch_xpack_reporting|bool|lower }}

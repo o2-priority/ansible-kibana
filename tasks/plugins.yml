@@ -2,10 +2,16 @@
 
 - name: Get list of installed kibana plugins
   shell: >
-      {{ kibana_bin_dir }}/kibana-plugin list
+      {{ kibana_bin_dir }}/kibana-plugin list 
   register: plugins
-  
-#- debug: var=plugins
+
+- debug: msg="Installed plugins - {{ plugins.stdout_lines|join(', ') }}"
+
+- name: Remove installed kibana plugins before update
+  shell: >
+      {{ kibana_bin_dir }}/kibana-plugin remove {{ item }}
+  with_items: "{{ kibana_plugins_install|intersect(plugins.stdout_lines) }}"
+  when: kibana_update_plugins
 
 - name: Install kibana plugins
   shell: >
