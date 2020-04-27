@@ -6,14 +6,14 @@
 #- pause: minutes=10
 
 - name: Create kibana config file | v5.x
-  template: 
+  template:
     src:   kibana-v5.x.yml.j2
     dest:  "{{ kibana_conf_dir }}/kibana.yml"
     owner: "root"
     group: "root"
     mode:  0644
   when: kibana_major_version|int == 5
-  notify: 
+  notify:
     - Restart kibana
 
 - name: Create kibana config file | v6.x
@@ -28,23 +28,31 @@
     - Restart kibana
 
 - name: Create kibana default settings file
-  template: 
+  template:
     src:   etc.default.kibana.j2
     dest:  "/etc/default/kibana"
     owner: root
     group: root
     mode:  0644
-  notify: 
+  notify:
     - Restart kibana
 
+- name: Create kibana logrotate config file
+  template:
+    src:   kibana.logrotate.j2
+    dest:  /etc/logrotate.d/kibana
+    owner: root
+    group: root
+    mode:  0644
+
 - name: Create kibana pid dir
-  file: 
+  file:
     path:  "{{ kibana_pid_dir }}"
     owner: "{{ kibana_user }}"
     group: "{{ kibana_user }}"
     mode:  0755
     state: directory
-  
+
 - name: Kibana Plugins
   include: plugins.yml
   when: kibana_major_version|int >= 5

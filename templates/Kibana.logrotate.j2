@@ -1,0 +1,22 @@
+{{ kibana_log_dir }}/kibana.stdout
+{
+    rotate 6
+    daily
+    size 100M
+    missingok
+    dateext
+    copytruncate
+    notifempty
+    compress
+}
+{{ kibana_log_dir }}/kibana.stderr
+{
+    rotate 6
+    daily
+    size 100M
+    missingok
+    dateext
+    copytruncate
+    notifempty
+    compress
+}
