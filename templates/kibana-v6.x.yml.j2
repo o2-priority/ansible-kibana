@@ -128,3 +128,6 @@ xpack.graph.enabled:  {{ kibana_elasticsearch_xpack_graph|bool|lower }}
 xpack.ml.enabled:  {{ kibana_elasticsearch_xpack_ml|bool|lower }}
 xpack.monitoring.enabled:  {{ kibana_elasticsearch_xpack_monitoring|bool|lower }}
 xpack.reporting.enabled:  {{ kibana_elasticsearch_xpack_reporting|bool|lower }}
+xpack.reporting.csv.maxSizeBytes: {{ kibana_elasticsearch_xpack_reporting_csv_limit }}
+xpack.reporting.encryptionKey: {{ kibana_elasticsearch_xpack_reporting_encryption_key }}
+xpack.reporting.queue.timeout: {{ kibana_elasticsearch_xpack_reporting_queue_timeout }}

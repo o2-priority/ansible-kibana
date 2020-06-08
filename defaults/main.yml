@@ -58,6 +58,9 @@ kibana_elasticsearch_xpack_reporting: true
 kibana_elasticsearch_xpack_graph: false
 kibana_elasticsearch_xpack_ml: false
 kibana_elasticsearch_xpack_monitoring: false
+kibana_elasticsearch_xpack_reporting_csv_limit: 52428800  #50MB
+kibana_elasticsearch_xpack_reporting_encryption_key: AxeJ44k5KEaJDxixZC5ycitN4k2bkgFw
+kibana_elasticsearch_xpack_reporting_queue_timeout: 1200000
 
 kibana_logging_dest: stdout
 kibana_logging_silent: false
